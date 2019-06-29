@@ -1,0 +1,31 @@
+{% load static %}
+<head>
+    <title>Home</title>
+    <link rel='stylesheet' href="{% static 'css/review.css' %}">
+</head>
+
+<div style="text-align:center">
+    {% if user.is_active %}
+    <div>
+    <p>{{user.username}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'logout'%}">logout</a></P>
+    <hr>
+    <br>
+    </div>
+   
+    {% else %}
+    <a href="{% url 'accounts:signup'%}">signup</a>
+    <a href="{% url 'login'%}">login</a>
+    {% endif %}
+
+    {% for post in posts.all %}
+        <div>
+            <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
+            <div class="ellips">{{post.text}}</div>
+            <br><hr><br>
+        </div>
+    {% endfor %}
+    <div>  
+        <a href="{% url 'new'%}">글쓰기</a>
+    </div>
+</div>
