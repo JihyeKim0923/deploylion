@@ -4,9 +4,9 @@
     <link rel='stylesheet' href="{% static 'css/review.css' %}">
 </head>
 
-<div style="text-align:center">
+
     {% if user.is_active %}
-    <div>
+    <div style="text-align:right">
     <p>{{user.username}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="{% url 'logout'%}">logout</a></P>
     <hr>
@@ -14,10 +14,12 @@
     </div>
    
     {% else %}
+    <div style="text-align:right">
     <a href="{% url 'accounts:signup'%}">signup</a>
     <a href="{% url 'login'%}">login</a>
+    </div>
     {% endif %}
-
+    <div style="text-align:center">
     {% for post in posts.all %}
         <div>
             <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
